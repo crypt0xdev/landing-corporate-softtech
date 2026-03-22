@@ -147,12 +147,22 @@ colors: {
 
 ### Vercel (Recomendado)
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Crypt0xDev/softtech-landing)
+
+El proyecto incluye un archivo `vercel.json` configurado con:
+- ✅ Headers de seguridad (CSP, X-Frame-Options, etc.)
+- ✅ Cache optimization para assets
+- ✅ SPA rewrites configuradas
+- ✅ Variables de entorno preparadas
+
+**Deploy manual:**
 ```bash
 npm install -g vercel
 vercel
 ```
 
-O conecta directamente desde [vercel.com/new](https://vercel.com/new)
+**Deploy automático:**
+Conecta tu repositorio desde [vercel.com/new](https://vercel.com/new) para deploys automáticos en cada push.
 
 ### Netlify
 
@@ -166,6 +176,7 @@ npm run build
 - **Build Command**: `npm run build`
 - **Output Directory**: `dist`
 - **Node Version**: 18.x o superior
+- **Framework**: Vite (auto-detectado)
 
 ## 📊 Performance
 
@@ -193,5 +204,6 @@ npm run build
 
 ---
 
-Desarrollado con 💙 por el equipo de SoftTech Perú
-# softtech-landing
+**Desarrollado con 💙 por el equipo de SoftTech Perú**
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Crypt0xDev/softtech-landing)
