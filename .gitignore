@@ -1,4 +1,33 @@
-# Logs
+# ========================================
+# 📦 Dependencies
+# ========================================
+node_modules
+bower_components
+
+# ========================================
+# 🔨 Build Outputs
+# ========================================
+dist
+dist-ssr
+build
+.next
+out
+
+# ========================================
+# 🔐 Environment Variables (CRITICAL - NO SUBIR)
+# ========================================
+.env
+.env.local
+.env.*.local
+.env.production.local
+.env.development.local
+
+# ⚠️ IMPORTANTE: .env.example SÍ debe subirse al repo
+# Contiene solo placeholders sin datos reales
+
+# ========================================
+# 📝 Logs
+# ========================================
 logs
 *.log
 npm-debug.log*
@@ -7,23 +36,59 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Environment variables
-.env
-.env.local
-.env.*.local
-
-# Editor directories and files
+# ========================================
+# 💻 Editor & IDE
+# ========================================
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# ========================================
+# 🖥️ OS Files
+# ========================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ========================================
+# 🧪 Testing & Coverage
+# ========================================
+coverage
+.nyc_output
+*.lcov
+
+# ========================================
+# 🔒 Local Files (no subir al repo)
+# ========================================
+*.local
+
+# ========================================
+# ⚡ Cache & Temp
+# ========================================
+.cache
+.parcel-cache
+.npm
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+
+# ========================================
+# 📱 Vercel & Deployment
+# ========================================
+.vercel
+.netlify
+
+# ========================================
+# 🗂️ Otros
+# ========================================
+*.bak
+*.swp
+*~

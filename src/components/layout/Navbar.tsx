@@ -7,16 +7,51 @@ import Button from '@/components/ui/Button';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+
+      // Cambiar estilo cuando scroll > 20
+      setIsScrolled(currentScrollY > 20);
+
+      // Ocultar navbar al hacer scroll hacia abajo, mostrar al hacer scroll hacia arriba
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down
+        setIsHidden(true);
+        setIsMobileMenuOpen(false); // Cerrar menú móvil al ocultar
+      } else {
+        // Scrolling up
+        setIsHidden(false);
+      }
+
+      setLastScrollY(currentScrollY);
+
+      // Detectar sección activa
+      const sections = NAV_LINKS.map((link) => link.href.replace('#', ''));
+      const scrollPosition = currentScrollY + 100;
+
+      for (const sectionId of sections) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const sectionTop = section.offsetTop;
+          const sectionBottom = sectionTop + section.offsetHeight;
+
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            setActiveSection(`#${sectionId}`);
+            break;
+          }
+        }
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const handleNavClick = (href: string) => {
     scrollToSection(href);
@@ -24,9 +59,14 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav
+    <motion.nav
+      initial={{ y: 0 }}
+      animate={{ y: isHidden ? -100 : 0 }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-lg py-4' : 'bg-transparent py-6'
+        isScrolled
+          ? 'bg-white/95 backdrop-blur-md shadow-lg py-3'
+          : 'bg-transparent py-6'
       }`}
     >
       <div className="container-custom">
@@ -49,9 +89,18 @@ const Navbar: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 onClick={() => handleNavClick(link.href)}
-                className="text-secondary-700 hover:text-primary-600 font-medium transition-colors"
+                className={`relative text-secondary-700 hover:text-primary-600 font-medium transition-colors ${
+                  activeSection === link.href ? 'text-primary-600' : ''
+                }`}
               >
                 {link.label}
+                {activeSection === link.href && (
+                  <motion.div
+                    layoutId="activeSection"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-600"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
               </motion.button>
             ))}
             <Button
@@ -88,7 +137,11 @@ const Navbar: React.FC = () => {
                   <button
                     key={link.href}
                     onClick={() => handleNavClick(link.href)}
-                    className="block w-full text-left px-4 py-2 text-secondary-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
+                    className={`block w-full text-left px-4 py-2 rounded-lg transition-colors ${
+                      activeSection === link.href
+                        ? 'text-primary-600 bg-primary-50 font-semibold'
+                        : 'text-secondary-700 hover:text-primary-600 hover:bg-primary-50'
+                    }`}
                   >
                     {link.label}
                   </button>
@@ -109,7 +162,7 @@ const Navbar: React.FC = () => {
           )}
         </AnimatePresence>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

@@ -108,6 +108,99 @@ Semibold: font-semibold (600)
 Bold:     font-bold (700)
 ```
 
+## 🎯 Sistema de Iconos
+
+### Librería
+
+**Lucide React** - Iconos modernos, ligeros y personalizables.
+
+```tsx
+import { Icon } from 'lucide-react';
+```
+
+### Tamaños Estandarizados
+
+```tsx
+// Iconos pequeños - Badges, indicadores inline
+<Icon size={16} />  // 16px - Badges, inline text
+
+// Iconos normales - Navegación, botones
+<Icon size={20} />  // 20px - Botones, navegación, footer links
+
+// Iconos medianos - Contenido general
+<Icon size={24} />  // 24px - Listas, características, contenido
+
+// Iconos grandes - Tarjetas de servicios
+<Icon size={32} />  // 32px - Cards de servicios, features principales
+
+// Iconos destacados - Hero sections, headers
+<Icon size={48} />  // 48px - Hero icons, secciones destacadas
+```
+
+### Ejemplos de Uso
+
+```tsx
+// Botón con icono
+<Button>
+  Cotizar Proyecto
+  <ChevronRight size={20} />
+</Button>
+
+// Tarjeta de servicio
+<div className="p-3 bg-primary-100 rounded-lg">
+  <Code size={32} className="text-primary-600" />
+</div>
+
+// Lista con checkmarks
+<CheckCircle2 size={24} className="text-primary-600" />
+
+// Hero section
+<Sparkles size={16} className="text-primary-600" />
+```
+
+### Animaciones de Iconos
+
+```tsx
+// Icono con hover animado
+<motion.div
+  className="bg-primary-100 rounded-lg group-hover:bg-primary-600"
+  whileHover={{ scale: 1.1, rotate: 5 }}
+  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+>
+  <Icon size={32} className="text-primary-600 group-hover:text-white" />
+</motion.div>
+
+// Icono con animación continua
+<motion.div
+  animate={{ y: [0, -2, 0] }}
+  transition={{ repeat: Infinity, duration: 1.5 }}
+>
+  <ArrowUp size={24} />
+</motion.div>
+```
+
+### Colores de Iconos
+
+```tsx
+// Primary
+className = 'text-primary-600'; // Default
+className = 'text-primary-400'; // Lighter (sobre fondos oscuros)
+className = 'text-primary-700'; // Darker (hover states)
+
+// Secondary
+className = 'text-secondary-600'; // Contenido secundario
+className = 'text-secondary-700'; // Contenido principal
+
+// Estados
+className = 'text-green-600'; // Success
+className = 'text-red-600'; // Error
+className = 'text-yellow-600'; // Warning
+
+// Sobre fondos de color
+className = 'text-white'; // Sobre primary/secondary oscuro
+className = 'text-primary-200'; // Sobre gradientes
+```
+
 ## 📏 Espaciado
 
 ### Sistema de Spacing

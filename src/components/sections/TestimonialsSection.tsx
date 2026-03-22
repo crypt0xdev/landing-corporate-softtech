@@ -52,7 +52,7 @@ const TestimonialsSection: React.FC = () => {
         {[...Array(5)].map((_, index) => (
           <Star
             key={index}
-            size={18}
+            size={16}
             className={
               index < rating
                 ? 'fill-yellow-400 text-yellow-400'
@@ -84,7 +84,7 @@ const TestimonialsSection: React.FC = () => {
               <Card className="h-full relative">
                 {/* Quote Icon */}
                 <div className="absolute top-4 right-4 text-primary-200">
-                  <Quote size={40} />
+                  <Quote size={48} />
                 </div>
 
                 {/* Rating */}

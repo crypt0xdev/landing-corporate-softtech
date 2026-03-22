@@ -116,11 +116,19 @@ const AboutSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center"
+                whileHover={{ y: -5 }}
+                className="text-center group cursor-default"
               >
-                <div className="mb-4 inline-flex p-4 bg-primary-100 rounded-full">
-                  <Icon size={32} className="text-primary-600" />
-                </div>
+                <motion.div
+                  className="mb-4 inline-flex p-4 bg-primary-100 rounded-full transition-all duration-300 group-hover:bg-primary-600 group-hover:shadow-lg"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+                >
+                  <Icon
+                    size={32}
+                    className="text-primary-600 group-hover:text-white transition-colors duration-300"
+                  />
+                </motion.div>
                 <h4 className="text-xl font-bold text-secondary-900 mb-2">
                   {value.title}
                 </h4>

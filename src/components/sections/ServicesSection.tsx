@@ -84,11 +84,20 @@ const ServicesSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className="group"
               >
-                <Card className="h-full">
-                  <div className="mb-4 p-3 bg-primary-100 w-fit rounded-lg">
-                    <Icon size={32} className="text-primary-600" />
-                  </div>
+                <Card className="h-full hover:shadow-xl transition-shadow duration-300">
+                  <motion.div
+                    className="mb-4 p-3 bg-primary-100 w-fit rounded-lg group-hover:bg-primary-600 transition-all duration-300"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+                  >
+                    <Icon
+                      size={32}
+                      className="text-primary-600 group-hover:text-white transition-colors duration-300"
+                    />
+                  </motion.div>
                   <h3 className="text-xl font-bold text-secondary-900 mb-3">
                     {service.title}
                   </h3>

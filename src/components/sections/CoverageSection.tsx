@@ -24,6 +24,7 @@ const CoverageSection: React.FC = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            whileHover={{ scale: 1.1, rotate: 360 }}
             className="inline-flex items-center gap-3 mb-6"
           >
             <MapPin size={48} className="text-primary-200" />
@@ -77,11 +78,19 @@ const CoverageSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center"
+                whileHover={{ y: -5 }}
+                className="text-center group cursor-default"
               >
-                <div className="mb-4 inline-flex p-4 bg-white/10 backdrop-blur-sm rounded-full">
-                  <Icon size={32} />
-                </div>
+                <motion.div
+                  className="mb-4 inline-flex p-4 bg-white/10 backdrop-blur-sm rounded-full group-hover:bg-white/20 transition-all duration-300"
+                  whileHover={{ scale: 1.15, rotate: 5 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+                >
+                  <Icon
+                    size={32}
+                    className="group-hover:scale-110 transition-transform duration-300"
+                  />
+                </motion.div>
                 <h3 className="text-xl font-bold mb-2">{item.title}</h3>
                 <p className="text-primary-100">{item.description}</p>
               </motion.div>

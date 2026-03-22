@@ -27,7 +27,7 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="mb-6 inline-flex items-center gap-2 px-4 py-2 bg-primary-100 rounded-full"
           >
-            <Sparkles size={18} className="text-primary-600" />
+            <Sparkles size={16} className="text-primary-600" />
             <span className="text-sm font-medium text-primary-700">
               Soluciones Digitales Profesionales
             </span>

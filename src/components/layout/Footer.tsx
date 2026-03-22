@@ -108,17 +108,23 @@ const Footer: React.FC = () => {
           >
             <h4 className="text-lg font-semibold mb-4">Síguenos</h4>
             <div className="flex gap-4">
-              {socialIcons.map(({ Icon, href, label }) => (
-                <a
+              {socialIcons.map(({ Icon, href, label }, index) => (
+                <motion.a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-secondary-800 rounded-lg hover:bg-primary-600 transition-colors"
+                  className="p-3 bg-secondary-800 rounded-lg hover:bg-primary-600 transition-all duration-300 hover:scale-110 hover:shadow-lg"
                   aria-label={label}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   <Icon size={20} />
-                </a>
+                </motion.a>
               ))}
             </div>
             <p className="text-secondary-400 mt-4 text-sm">
