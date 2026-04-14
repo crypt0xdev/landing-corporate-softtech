@@ -3,7 +3,7 @@
 
 export const env = {
   // Empresa
-  companyName: process.env.NEXT_PUBLIC_COMPANY_NAME ?? 'SoftTech Perú',
+  companyName: process.env.NEXT_PUBLIC_COMPANY_NAME ?? 'SoftTech',
   companyEmail: process.env.NEXT_PUBLIC_COMPANY_EMAIL ?? 'softtech.soport@gmail.com',
   companyPhone: process.env.NEXT_PUBLIC_COMPANY_PHONE ?? '+51 923 233 333',
   companyAddress: process.env.NEXT_PUBLIC_COMPANY_ADDRESS ?? 'Av. Migel Garsu N°793, Lima',
@@ -36,7 +36,7 @@ export const env = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://softtech-landing.vercel.app',
   siteTitle:
     process.env.NEXT_PUBLIC_SITE_TITLE ??
-    'SoftTech Perú - Desarrollo Web Profesional | Soluciones Digitales',
+    'SoftTech - Desarrollo Web Profesional | Soluciones Digitales',
   siteDescription:
     process.env.NEXT_PUBLIC_SITE_DESCRIPTION ??
     'Empresa líder en desarrollo web, e-commerce, landing pages y software empresarial en Perú.',

@@ -14,8 +14,8 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://softtech-landing.vercel.app'),
   title: {
-    default: 'SoftTech Perú - Desarrollo Web Profesional | Soluciones Digitales en Perú',
-    template: '%s | SoftTech Perú',
+    default: 'SoftTech - Desarrollo Web Profesional | Soluciones Digitales en Perú',
+    template: '%s | SoftTech',
   },
   description:
     'Empresa líder en desarrollo web, e-commerce, landing pages y soluciones tecnológicas. Desarrollo de software a medida, tiendas online y seguridad informática. Servicio profesional en todo Perú.',
@@ -29,14 +29,14 @@ export const metadata: Metadata = {
     'seguridad informatica',
     'marketing digital',
   ],
-  authors: [{ name: 'SoftTech Perú' }],
+  authors: [{ name: 'SoftTech' }],
   robots: { index: true, follow: true },
   openGraph: {
     type: 'website',
     locale: 'es_PE',
     url: 'https://softtech-landing.vercel.app',
-    siteName: 'SoftTech Perú',
-    title: 'SoftTech Perú - Desarrollo Web Profesional | Soluciones Digitales',
+    siteName: 'SoftTech',
+    title: 'SoftTech - Desarrollo Web Profesional | Soluciones Digitales',
     description:
       'Desarrollo web, e-commerce, software empresarial y soluciones digitales profesionales en todo Perú. ¡Transforma tu negocio!',
     images: [
@@ -44,13 +44,13 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'SoftTech Perú',
+        alt: 'SoftTech',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SoftTech Perú - Desarrollo Web Profesional',
+    title: 'SoftTech - Desarrollo Web Profesional',
     description: 'Desarrollo web, e-commerce y soluciones digitales profesionales en Perú',
     images: ['/og-image.png'],
   },
