@@ -1,14 +1,13 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
 import { trackWhatsAppClick } from '@/utils/analytics';
+import { env } from '@/config/env';
 
 const WhatsAppButton: React.FC = () => {
-  const message =
-    import.meta.env.VITE_WHATSAPP_MESSAGE ||
-    'Hola, me interesa cotizar un proyecto de desarrollo web';
-  const phone = import.meta.env.VITE_WHATSAPP_PHONE || '51999999999';
-  const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  const whatsappUrl = `https://wa.me/${env.whatsappPhone}?text=${encodeURIComponent(env.whatsappMessage)}`;
 
   const handleClick = () => {
     trackWhatsAppClick();

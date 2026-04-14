@@ -1,3 +1,5 @@
+'use client';
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { translations } from '@/i18n/translations';
 import type { Language } from '@/i18n/translations';
@@ -15,27 +17,26 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [language, setLanguage] = useState<Language>(() => {
-    // Verificar idioma guardado
-    const savedLang = localStorage.getItem('language') as Language | null;
-    if (savedLang && (savedLang === 'es' || savedLang === 'en')) {
-      return savedLang;
-    }
-
-    // Detectar idioma del navegador
-    const browserLang = navigator.language.toLowerCase();
-    if (browserLang.startsWith('es')) {
-      return 'es';
-    }
-
-    return 'es'; // Por defecto español
-  });
+  // Siempre inicia con 'es' en servidor y cliente → sin hydration mismatch
+  const [language, setLanguage] = useState<Language>('es');
 
   useEffect(() => {
-    // Guardar en localStorage
-    localStorage.setItem('language', language);
+    // Leer preferencia después de la hidratación
+    // SSR-safe: estado inicia con 'es' en servidor, se actualiza al montar en cliente
+    const savedLang = localStorage.getItem('language') as Language | null;
+    if (savedLang && (savedLang === 'es' || savedLang === 'en')) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setLanguage(savedLang);
+    } else {
+      const browserLang = navigator.language.toLowerCase();
+      if (!browserLang.startsWith('es')) {
+        setLanguage('en');
+      }
+    }
+  }, []);
 
-    // Actualizar atributo lang en HTML
+  useEffect(() => {
+    localStorage.setItem('language', language);
     document.documentElement.lang = language;
   }, [language]);
 

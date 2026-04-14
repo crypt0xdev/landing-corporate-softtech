@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -22,11 +24,11 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
       transition={{ duration: 0.6 }}
       className={`mb-12 md:mb-16 ${alignment}`}
     >
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary-900 mb-4">
+      <h2 className="mb-4 text-3xl font-bold md:text-4xl lg:text-5xl text-secondary-900 dark:text-white">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-lg md:text-xl text-secondary-600 max-w-3xl mx-auto">
+        <p className="max-w-3xl mx-auto text-lg md:text-xl text-secondary-600 dark:text-secondary-300">
           {subtitle}
         </p>
       )}

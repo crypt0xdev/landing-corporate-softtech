@@ -108,9 +108,9 @@ El proyecto ya incluye protección para:
 
 ```bash
 # Ejemplo de configuración en Vercel:
-VITE_COMPANY_EMAIL = tu-email-real@empresa.com
-VITE_WHATSAPP_PHONE = 51987654321
-VITE_GA_TRACKING_ID = G-TU-ID-REAL
+NEXT_PUBLIC_COMPANY_EMAIL = tu-email-real@empresa.com
+NEXT_PUBLIC_WHATSAPP_PHONE = 51987654321
+NEXT_PUBLIC_GA_TRACKING_ID = G-TU-ID-REAL
 ```
 
 ## 🚨 Si Accidentalmente Subiste Datos Privados
@@ -130,5 +130,5 @@ VITE_GA_TRACKING_ID = G-TU-ID-REAL
 
 ---
 
-**Repositorio público = Datos de ejemplo**  
+**Repositorio público = Datos de ejemplo**
 **Deploy privado = Tus datos reales**

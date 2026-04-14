@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import {
@@ -39,7 +41,7 @@ const Footer: React.FC = () => {
             transition={{ duration: 0.5 }}
           >
             <h3 className="text-2xl font-bold mb-4">
-              {import.meta.env.VITE_COMPANY_NAME || 'Tu Empresa'}
+              {COMPANY_INFO.name}
             </h3>
             <p className="text-secondary-400 mb-4">
               Soluciones digitales profesionales para impulsar tu negocio en la
@@ -134,7 +136,7 @@ const Footer: React.FC = () => {
                     scale: 1.15,
                     y: -4,
                     rotate: [0, -5, 5, 0],
-                    transition: { duration: 0.3 },
+                    transition: { type: 'tween', duration: 0.3 },
                   }}
                   whileTap={{ scale: 0.95 }}
                 >

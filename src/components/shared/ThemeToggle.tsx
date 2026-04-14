@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Moon, Sun } from 'lucide-react';
@@ -20,7 +22,7 @@ const ThemeToggle: React.FC = () => {
     >
       {/* Efecto de brillo */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent rounded-full"
+        className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/30 to-transparent"
         initial={{ x: '-100%' }}
         animate={{ x: '100%' }}
         transition={{

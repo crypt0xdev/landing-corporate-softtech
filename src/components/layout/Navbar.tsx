@@ -1,7 +1,9 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronRight, Moon, Sun } from 'lucide-react';
-import { NAV_LINKS } from '@/constants';
+import { NAV_LINKS, COMPANY_INFO } from '@/constants';
 import { scrollToSection } from '@/utils/scroll';
 import Button from '@/components/ui/Button';
 import LanguageSelector from '@/components/shared/LanguageSelector';
@@ -114,7 +116,7 @@ const Navbar: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >
-            {import.meta.env.VITE_COMPANY_NAME || 'SoftTech Perú'}
+            {COMPANY_INFO.name}
           </motion.button>
 
           {/* Desktop Navigation */}

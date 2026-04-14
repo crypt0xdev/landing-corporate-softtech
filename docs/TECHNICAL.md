@@ -16,11 +16,14 @@
 
 ```
 src/
+├── app/                         # Next.js App Router
+│   ├── layout.tsx               # Root layout (providers, metadata, Toaster)
+│   └── page.tsx                 # Página raíz → <HomePage />
 ├── components/
-│   ├── layout/          # Componentes de diseño estructural
-│   │   ├── Navbar.tsx   # Navegación principal
-│   │   └── Footer.tsx   # Pie de página
-│   ├── sections/        # Secciones de la landing
+│   ├── layout/                  # Componentes de diseño estructural
+│   │   ├── Navbar.tsx           # Navegación principal
+│   │   └── Footer.tsx           # Pie de página
+│   ├── sections/                # Secciones de la landing
 │   │   ├── HeroSection.tsx
 │   │   ├── ServicesSection.tsx
 │   │   ├── AboutSection.tsx
@@ -29,12 +32,12 @@ src/
 │   │   ├── ContactSection.tsx
 │   │   ├── CoverageSection.tsx
 │   │   └── CTASection.tsx
-│   ├── shared/          # Componentes compartidos
+│   ├── shared/                  # Componentes compartidos
 │   │   ├── SEO.tsx
 │   │   ├── WhatsAppButton.tsx
 │   │   ├── ScrollToTop.tsx
 │   │   └── LoadingSpinner.tsx
-│   └── ui/              # Biblioteca de componentes UI
+│   └── ui/                      # Biblioteca de componentes UI
 │       ├── Button.tsx
 │       ├── Card.tsx
 │       ├── Container.tsx
@@ -42,36 +45,41 @@ src/
 │       ├── TextArea.tsx
 │       └── SectionTitle.tsx
 ├── config/
-│   └── env.ts           # Configuración de variables de entorno
+│   └── env.ts                   # Configuración de variables de entorno
 ├── constants/
-│   └── index.ts         # Constantes de la aplicación
+│   └── index.ts                 # Constantes de la aplicación
+├── contexts/
+│   ├── ThemeContext.tsx         # Tema claro/oscuro (SSR-safe)
+│   └── LanguageContext.tsx      # Idioma es/en (SSR-safe)
 ├── hooks/
-│   ├── useForm.ts       # Hook para manejo de formularios
-│   └── useScrollAnimation.ts  # Hook para animaciones
+│   ├── useForm.ts              # Hook para manejo de formularios
+│   └── useScrollAnimation.ts   # Hook para animaciones
+├── i18n/
+│   └── translations.ts         # Traducciones ES / EN
 ├── pages/
-│   └── HomePage.tsx     # Página principal
+│   └── HomePage.tsx            # Vista principal
 ├── styles/
-│   └── index.css        # Estilos globales
+│   └── index.css               # Estilos globales
 ├── types/
-│   └── index.ts         # Tipos TypeScript
+│   └── index.ts                # Tipos TypeScript (inferidos de Zod)
 └── utils/
-    ├── analytics.ts     # Utilidades de analytics
-    ├── scroll.ts        # Utilidades de scroll
-    └── validation.ts    # Validadores de formularios
+    ├── analytics.ts            # Utilidades de analytics
+    ├── contactValidation.ts    # Esquema Zod para el formulario
+    └── scroll.ts               # Utilidades de scroll
 ```
 
 ## ⚙️ Configuración
 
 ### Variables de Entorno
 
-El proyecto utiliza Vite para gestión de variables de entorno.
+El proyecto utiliza Next.js para gestión de variables de entorno. Todo lo que el navegador necesita ver lleva el prefijo `NEXT_PUBLIC_`.
 
 **Archivo:** `src/config/env.ts`
 
 ```typescript
 export const env = {
-  companyName: import.meta.env.VITE_COMPANY_NAME || 'Tu Empresa',
-  companyEmail: import.meta.env.VITE_COMPANY_EMAIL || 'contacto@tuempresa.com',
+  companyName: process.env.NEXT_PUBLIC_COMPANY_NAME || 'Tu Empresa',
+  companyEmail: process.env.NEXT_PUBLIC_COMPANY_EMAIL || 'contacto@tuempresa.com',
   // ...más configuraciones con fallbacks
 } as const;
 ```
@@ -89,7 +97,7 @@ export const env = {
 
 ```typescript
 export const COMPANY_INFO = {
-  name: import.meta.env.VITE_COMPANY_NAME || 'Tu Empresa',
+  name: process.env.NEXT_PUBLIC_COMPANY_NAME || 'Tu Empresa',
   // ...
 } as const;
 
@@ -261,23 +269,33 @@ const { values, errors, isSubmitting, handleChange, handleSubmit } =
 
 ## 🛠️ Utilidades
 
-### Validation
+### Validation (Zod)
 
-**Archivo:** `src/utils/validation.ts`
+**Archivo:** `src/utils/contactValidation.ts`
 
-**Funciones:**
+La validación del formulario utiliza **Zod** como única fuente de verdad.
 
-- `validateEmail(email: string): boolean`
-- `validatePhone(phone: string): boolean`
-- `validateRequired(value: string): boolean`
-- `validateMinLength(value: string, min: number): boolean`
-
-**Ejemplo:**
+**Esquema:**
 
 ```typescript
-import { validateEmail } from '@/utils/validation';
+import { z } from 'zod';
 
-const isValid = validateEmail('test@example.com'); // true
+export const contactFormSchema = z.object({
+  name: z.string().min(2),
+  email: z.string().email(),
+  phone: z.string().min(9),
+  company: z.string().default(''),
+  message: z.string().min(10),
+});
+```
+
+**Uso en componentes:**
+
+```typescript
+const result = contactFormSchema.safeParse(values);
+if (!result.success) {
+  // result.error.issues contiene los errores por campo
+}
 ```
 
 ### Scroll
@@ -376,14 +394,14 @@ colors: {
 npm run build
 ```
 
-**Output:** `dist/`
+**Output:** `.next/`
 
 **Optimizaciones:**
 
-- Code splitting automático
-- Minificación CSS/JS
+- Renderizado estático (SSG) y dinámico (SSR)
+- Minificación CSS/JS automática
 - Tree shaking
-- Asset optimization
+- Optimización de assets
 
 ### Vercel
 
@@ -391,14 +409,9 @@ El proyecto incluye `vercel.json` con:
 
 ```json
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "framework": "vite",
+  "framework": "nextjs",
   "headers": [
     /* Security headers */
-  ],
-  "rewrites": [
-    /* SPA support */
   ]
 }
 ```
@@ -406,7 +419,7 @@ El proyecto incluye `vercel.json` con:
 **Variables de entorno en Vercel:**
 
 1. Settings → Environment Variables
-2. Añadir todas las `VITE_*` variables
+2. Añadir todas las `NEXT_PUBLIC_*` variables
 3. Available for: Production, Preview, Development
 
 ## 📊 Performance
@@ -423,7 +436,7 @@ El proyecto incluye `vercel.json` con:
 
 ```bash
 npm run build
-# Ver dist/ para analizar tamaños
+# Revisar .next/analyze o usar @next/bundle-analyzer
 ```
 
 ## 🔒 Seguridad

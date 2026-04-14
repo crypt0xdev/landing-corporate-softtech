@@ -6,9 +6,9 @@
 
 > ⚠️ **NOTA**: Este es un proyecto público con datos de **EJEMPLO**. Reemplaza toda la información con tus datos reales.
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.2-blue.svg?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-19.2-61dafb.svg?style=for-the-badge&logo=react)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-8.0-646CFF.svg?style=for-the-badge&logo=vite)](https://vitejs.dev/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.2-000000.svg?style=for-the-badge&logo=nextdotjs)](https://nextjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC.svg?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Crypt0xDev/softtech-landing)
@@ -25,7 +25,7 @@
 
 ### 🎨 Diseño & UX
 
-- ⚡ **Alto Rendimiento** con Vite
+- ⚡ **Alto Rendimiento** con Next.js SSR
 - 📱 **100% Responsive** - Mobile First
 - 🎭 **Animaciones Fluidas** con Framer Motion
 - ♿ **Accesibilidad WCAG 2.1**
@@ -48,14 +48,15 @@
 
 <div align="center">
 
-|    🎯 Tecnología     | 📦 Versión | 💡 Propósito |
-| :------------------: | :--------: | :----------: |
-|     ⚛️ **React**     |  `19.2.4`  | UI Framework |
-|  📘 **TypeScript**   |  `5.2.2`   | Type Safety  |
-|     ⚡ **Vite**      |  `8.0.1`   |  Build Tool  |
-| 🎨 **Tailwind CSS**  |  `3.4.19`  |   Styling    |
-| 🎭 **Framer Motion** | `12.38.0`  |  Animations  |
-| 🎯 **Lucide React**  | `0.577.0`  | Icon System  |
+|    🎯 Tecnología     | 📦 Versión | 💡 Propósito       |
+| :------------------: | :--------: | :----------------: |
+|     ⚛️ **React**     |  `19.2.4`  | UI Framework       |
+|  📘 **TypeScript**   |  `5.9.3`   | Type Safety        |
+|   🔲 **Next.js**     |  `16.2.3`  | SSR / App Router   |
+| 🎨 **Tailwind CSS**  |  `3.4.19`  | Styling            |
+| 🎭 **Framer Motion** | `12.38.0`  | Animations         |
+| 🎯 **Lucide React**  | `0.577.0`  | Icon System        |
+|   🛡️ **Zod**         |  `4.3.6`   | Form Validation    |
 
 </div>
 
@@ -76,33 +77,38 @@ cp .env.example .env
 npm run dev
 ```
 
-> 🎉 Abre [http://localhost:5174](http://localhost:5174) en tu navegador
+> 🎉 Abre [http://localhost:3000](http://localhost:3000) en tu navegador
 
 ## 🎮 Scripts Disponibles
 
-| 📝 Comando        | 🎯 Descripción                                |
-| :---------------- | :-------------------------------------------- |
-| `npm run dev`     | 🚀 Servidor de desarrollo en `localhost:5174` |
-| `npm run build`   | 📦 Build optimizado para producción           |
-| `npm run preview` | 👀 Preview del build de producción            |
-| `npm run lint`    | 🔍 Verificar código con ESLint                |
+| 📝 Comando        | 🎯 Descripción                              |
+| :---------------- | :------------------------------------------ |
+| `npm run dev`     | 🚀 Servidor de desarrollo en `localhost:3000` |
+| `npm run build`   | 📦 Build optimizado para producción          |
+| `npm run start`   | ▶️ Servidor de producción local              |
+| `npm run lint`    | 🔍 Verificar código con ESLint               |
 
 ## Arquitectura del Proyecto
 
 ```
 📁 src/
+├── 🗂️ app/                # Next.js App Router
+│   ├── layout.tsx         # Root layout (providers, metadata)
+│   └── page.tsx           # Página raíz → <HomePage />
 ├── 🧩 components/
 │   ├── 🏛️ layout/          # Navbar, Footer
 │   ├── 📜 sections/        # Hero, Services, Contact, etc.
 │   ├── 🤝 shared/          # SEO, WhatsAppButton, ScrollToTop
 │   └── 🎨 ui/              # Button, Card, Input, Container
 ├── ⚙️ config/              # Configuraciones centralizadas
-├── 📊 constants/          # Constantes de aplicación
-├── 🪝 hooks/              # useForm, useScrollAnimation
-├── 📄 pages/              # HomePage
-├── 🎨 styles/             # Estilos globales CSS
-├── 📝 types/              # Definiciones TypeScript
-└── 🛠️ utils/              # Funciones utilidades
+├── 📊 constants/           # Constantes de aplicación
+├── 🌐 contexts/            # ThemeContext, LanguageContext
+├── 🪝 hooks/               # useForm, useScrollAnimation
+├── 🌍 i18n/                # Traducciones (es/en)
+├── 📄 pages/               # HomePage (view principal)
+├── 🎨 styles/              # Estilos globales CSS
+├── 📝 types/               # Definiciones TypeScript
+└── 🛠️ utils/               # analytics, scroll, contactValidation
 ```
 
 ## ⚙️ Variables de Entorno
@@ -120,22 +126,22 @@ Crea un archivo `.env` en la raíz del proyecto:
 
 ```env
 # 🏢 Información de la Empresa (REEMPLAZA CON TUS DATOS REALES)
-VITE_COMPANY_NAME="Tu Empresa"
-VITE_COMPANY_EMAIL="contacto@tuempresa.com"
-VITE_COMPANY_PHONE="+51 999 999 999"
-VITE_COMPANY_ADDRESS="Av. Principal 123, Lima"
+NEXT_PUBLIC_COMPANY_NAME="Tu Empresa"
+NEXT_PUBLIC_COMPANY_EMAIL="contacto@tuempresa.com"
+NEXT_PUBLIC_COMPANY_PHONE="+51 999 999 999"
+NEXT_PUBLIC_COMPANY_ADDRESS="Av. Principal 123, Lima"
 
 # 📱 WhatsApp (SIN el + al inicio)
-VITE_WHATSAPP_PHONE="51999999999"
-VITE_WHATSAPP_MESSAGE="Hola, me interesa cotizar un proyecto"
+NEXT_PUBLIC_WHATSAPP_PHONE="51999999999"
+NEXT_PUBLIC_WHATSAPP_MESSAGE="Hola, me interesa cotizar un proyecto"
 
 # 📊 Analytics
-VITE_GA_TRACKING_ID="G-XXXXXXXXXX"
+NEXT_PUBLIC_GA_TRACKING_ID="G-XXXXXXXXXX"
 
 # 🌐 SEO
-VITE_SITE_URL="https://tuempresa.com"
-VITE_SITE_TITLE="Tu Empresa - Desarrollo Web Profesional"
-VITE_SITE_DESCRIPTION="Empresa líder en desarrollo web y software"
+NEXT_PUBLIC_SITE_URL="https://tuempresa.com"
+NEXT_PUBLIC_SITE_TITLE="Tu Empresa - Desarrollo Web Profesional"
+NEXT_PUBLIC_SITE_DESCRIPTION="Empresa líder en desarrollo web y software"
 ```
 
 <details>
@@ -143,19 +149,19 @@ VITE_SITE_DESCRIPTION="Empresa líder en desarrollo web y software"
 
 ```env
 # 📧 Servicios de Email
-VITE_EMAILJS_SERVICE_ID=""
-VITE_EMAILJS_TEMPLATE_ID=""
-VITE_EMAILJS_PUBLIC_KEY=""
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=""
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=""
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=""
 
 # 🔗 Redes Sociales
-VITE_SOCIAL_FACEBOOK="https://facebook.com/tuempresa"
-VITE_SOCIAL_LINKEDIN="https://linkedin.com/company/tuempresa"
-VITE_SOCIAL_TWITTER="https://twitter.com/tuempresa"
-VITE_SOCIAL_INSTAGRAM="https://instagram.com/tuempresa"
+NEXT_PUBLIC_SOCIAL_FACEBOOK="https://facebook.com/tuempresa"
+NEXT_PUBLIC_SOCIAL_LINKEDIN="https://linkedin.com/company/tuempresa"
+NEXT_PUBLIC_SOCIAL_TWITTER="https://twitter.com/tuempresa"
+NEXT_PUBLIC_SOCIAL_INSTAGRAM="https://instagram.com/tuempresa"
 
 # 🎯 API (Si aplica)
-VITE_API_URL=""
-VITE_API_KEY=""
+NEXT_PUBLIC_API_URL=""
+NEXT_PUBLIC_API_KEY=""
 ```
 
 </details>
@@ -193,60 +199,17 @@ module.exports = {
 
 <br>
 
-| 🎯 Componente    | 📝 Descripción                             |
-| :--------------- | :----------------------------------------- |
-| **Navbar**       | Navegación sticky con detección de scroll  |
-| **Hero**         | Sección hero con animaciones y CTAs        |
-| **Services**     | Grid de servicios con efectos hover        |
-| **Testimonials** | Reseñas de clientes con ratings            |
-| **FAQ**          | Acordeón interactivo colapsable            |
-| **Contact**      | Formulario con validación y notificaciones |
-| **Footer**       | Pie de página con enlaces y redes sociales |
+| 🎯 Componente    | 📝 Descripción                                   |
+| :--------------- | :----------------------------------------------- |
+| **Navbar**       | Navegación sticky con detección de scroll         |
+| **Hero**         | Sección hero con animaciones y CTAs               |
+| **Services**     | Grid de servicios con efectos hover               |
+| **Testimonials** | Reseñas de clientes con ratings                   |
+| **FAQ**          | Acordeón interactivo colapsable                   |
+| **Contact**      | Formulario validado con Zod y notificaciones      |
+| **Footer**       | Pie de página con enlaces y redes sociales        |
 
 </details>
-
-## ✅ Características Implementadas
-
-<table>
-<tr>
-<td width="33%">
-
-### 🎨 **UI/UX**
-
-- ✅ Responsive mobile-first
-- ✅ Animaciones scroll reveal
-- ✅ Navegación suave
-- ✅ Toast notifications
-- ✅ Loading states
-- ✅ Error handling
-
-</td>
-<td width="33%">
-
-### 🚀 **Performance**
-
-- ✅ Meta tags SEO
-- ✅ Open Graph tags
-- ✅ Imágenes optimizadas
-- ✅ Code splitting
-- ✅ Lazy loading ready
-- ✅ Bundle optimizado
-
-</td>
-<td width="33%">
-
-### 🔧 **Funcionalidades**
-
-- ✅ WhatsApp integration
-- ✅ Formulario validado
-- ✅ Analytics ready
-- ✅ Scroll to top
-- ✅ FAQ interactivo
-- ✅ Responsive 100%
-
-</td>
-</tr>
-</table>
 
 ## 🚀 Deployment
 
@@ -261,8 +224,8 @@ module.exports = {
 **✨ Características del `vercel.json` incluido:**
 
 - 🔒 Headers de seguridad (CSP, X-Frame-Options, etc.)
-- ⚡ Optimización de caché para assets estáticos
-- 🔄 Rewrites configurados para SPA
+- ⚡ Caché optimizada para assets estáticos de Next.js (`/_next/static/`)
+- 🔲 Framework configurado como `nextjs` (auto-detect)
 - 🌐 Variables de entorno preparadas
 
 <details>
@@ -274,6 +237,9 @@ npm install -g vercel
 
 # Deploy
 vercel
+
+# Deploy a producción
+vercel --prod
 ```
 
 </details>
@@ -287,17 +253,17 @@ vercel
 
 ```bash
 npm run build
-# Arrastra la carpeta 'dist' a Netlify Drop
+# Configura el directorio de publicación en: .next
 ```
 
 ### Configuración Genérica
 
-| 🔑 Parámetro         | ⚙️ Valor              |
-| :------------------- | :-------------------- |
-| **Build Command**    | `npm run build`       |
-| **Output Directory** | `dist`                |
-| **Node Version**     | `18.x` o superior     |
-| **Framework**        | Vite (auto-detectado) |
+| 🔑 Parámetro         | ⚙️ Valor                |
+| :------------------- | :---------------------- |
+| **Build Command**    | `npm run build`         |
+| **Output Directory** | `.next`                 |
+| **Node Version**     | `18.x` o superior       |
+| **Framework**        | Next.js (auto-detectado)|
 
 </details>
 
@@ -330,8 +296,8 @@ npm run build
 
 ## 💬 Contacto
 
-📧 **Email:** [contacto@tuempresa.com](mailto:contacto@tuempresa.com)  
-📞 **Teléfono:** [+51 999 999 999](tel:+51999999999)  
+📧 **Email:** [contacto@tuempresa.com](mailto:contacto@tuempresa.com)
+📞 **Teléfono:** [+51 999 999 999](tel:+51999999999)
 🌐 **Website:** [tuempresa.com](https://tuempresa.com)
 
 > ⚠️ Datos de ejemplo - Reemplaza con tu información real

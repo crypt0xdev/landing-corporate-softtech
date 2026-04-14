@@ -45,7 +45,7 @@ export const useForm = <T extends Record<string, any>>({
       setValues(initialValues);
       setErrors({});
     } catch (error) {
-      if (import.meta.env.DEV) {
+      if (process.env.NODE_ENV === 'development') {
         console.error('Form submission error:', error);
       }
     } finally {

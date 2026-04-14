@@ -1,95 +1,50 @@
 // Environment Variables Configuration
-// Archivo de ayuda para acceder a las variables de entorno con TypeScript
-
-declare global {
-  interface ImportMetaEnv {
-    // Empresa
-    readonly VITE_COMPANY_NAME: string;
-    readonly VITE_COMPANY_EMAIL: string;
-    readonly VITE_COMPANY_PHONE: string;
-    readonly VITE_COMPANY_ADDRESS: string;
-    readonly VITE_COMPANY_COVERAGE: string;
-
-    // WhatsApp
-    readonly VITE_WHATSAPP_PHONE: string;
-    readonly VITE_WHATSAPP_MESSAGE: string;
-
-    // Redes Sociales
-    readonly VITE_SOCIAL_FACEBOOK: string;
-    readonly VITE_SOCIAL_LINKEDIN: string;
-    readonly VITE_SOCIAL_TWITTER: string;
-    readonly VITE_SOCIAL_INSTAGRAM: string;
-
-    // Analytics
-    readonly VITE_GA_TRACKING_ID: string;
-
-    // Formulario de Contacto
-    readonly VITE_EMAILJS_SERVICE_ID: string;
-    readonly VITE_EMAILJS_TEMPLATE_ID: string;
-    readonly VITE_EMAILJS_PUBLIC_KEY: string;
-    readonly VITE_FORMSUBMIT_EMAIL: string;
-    readonly VITE_API_URL: string;
-    readonly VITE_API_KEY: string;
-
-    // SEO
-    readonly VITE_SITE_URL: string;
-    readonly VITE_SITE_TITLE: string;
-    readonly VITE_SITE_DESCRIPTION: string;
-    readonly VITE_SITE_KEYWORDS: string;
-
-    // Entorno
-    readonly VITE_ENV: string;
-  }
-}
+// Variables de entorno para Next.js — usa NEXT_PUBLIC_* para acceso en cliente
 
 export const env = {
   // Empresa
-  companyName: import.meta.env.VITE_COMPANY_NAME || 'Tu Empresa',
-  companyEmail: import.meta.env.VITE_COMPANY_EMAIL || 'contacto@tuempresa.com',
-  companyPhone: import.meta.env.VITE_COMPANY_PHONE || '+51 999 999 999',
-  companyAddress:
-    import.meta.env.VITE_COMPANY_ADDRESS || 'Av. Principal 123, Lima',
-  companyCoverage:
-    import.meta.env.VITE_COMPANY_COVERAGE || 'Atención en todo Perú',
+  companyName: process.env.NEXT_PUBLIC_COMPANY_NAME ?? 'SoftTech Perú',
+  companyEmail: process.env.NEXT_PUBLIC_COMPANY_EMAIL ?? 'softtech.soport@gmail.com',
+  companyPhone: process.env.NEXT_PUBLIC_COMPANY_PHONE ?? '+51 923 233 333',
+  companyAddress: process.env.NEXT_PUBLIC_COMPANY_ADDRESS ?? 'Av. Migel Garsu N°793, Lima',
+  companyCoverage: process.env.NEXT_PUBLIC_COMPANY_COVERAGE ?? 'Atención en todo Perú – Servicio remoto',
 
   // WhatsApp
-  whatsappPhone: import.meta.env.VITE_WHATSAPP_PHONE || '51999999999',
+  whatsappPhone: process.env.NEXT_PUBLIC_WHATSAPP_PHONE ?? '51923233333',
   whatsappMessage:
-    import.meta.env.VITE_WHATSAPP_MESSAGE ||
-    'Hola, me interesa cotizar un proyecto',
+    process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE ??
+    'Hola, me interesa cotizar un proyecto de desarrollo web',
 
   // Redes Sociales
-  socialFacebook:
-    import.meta.env.VITE_SOCIAL_FACEBOOK || 'https://facebook.com/tuempresa',
-  socialLinkedin:
-    import.meta.env.VITE_SOCIAL_LINKEDIN ||
-    'https://linkedin.com/company/tuempresa',
-  socialTwitter:
-    import.meta.env.VITE_SOCIAL_TWITTER || 'https://twitter.com/tuempresa',
-  socialInstagram:
-    import.meta.env.VITE_SOCIAL_INSTAGRAM || 'https://instagram.com/tuempresa',
+  socialFacebook: process.env.NEXT_PUBLIC_SOCIAL_FACEBOOK ?? 'https://facebook.com/softtechperu',
+  socialLinkedin: process.env.NEXT_PUBLIC_SOCIAL_LINKEDIN ?? 'https://linkedin.com/company/softtechperu',
+  socialTwitter: process.env.NEXT_PUBLIC_SOCIAL_TWITTER ?? 'https://twitter.com/softtechperu',
+  socialInstagram: process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM ?? 'https://instagram.com/softtechperu',
 
   // Analytics
-  gaTrackingId: import.meta.env.VITE_GA_TRACKING_ID || '',
+  gaTrackingId: process.env.NEXT_PUBLIC_GA_TRACKING_ID ?? '',
 
   // Formulario
-  emailjsServiceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || '',
-  emailjsTemplateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '',
-  emailjsPublicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '',
-  formsubmitEmail: import.meta.env.VITE_FORMSUBMIT_EMAIL || '',
-  apiUrl: import.meta.env.VITE_API_URL || '',
-  apiKey: import.meta.env.VITE_API_KEY || '',
+  emailjsServiceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ?? '',
+  emailjsTemplateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? '',
+  emailjsPublicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ?? '',
+  formsubmitEmail: process.env.NEXT_PUBLIC_FORMSUBMIT_EMAIL ?? 'softtech.soport@gmail.com',
+  apiUrl: process.env.NEXT_PUBLIC_API_URL ?? '',
+  apiKey: process.env.NEXT_PUBLIC_API_KEY ?? '',
 
   // SEO
-  siteUrl: import.meta.env.VITE_SITE_URL || 'https://tuempresa.com',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://softtech-landing.vercel.app',
   siteTitle:
-    import.meta.env.VITE_SITE_TITLE ||
-    'Tu Empresa - Desarrollo Web Profesional',
+    process.env.NEXT_PUBLIC_SITE_TITLE ??
+    'SoftTech Perú - Desarrollo Web Profesional | Soluciones Digitales',
   siteDescription:
-    import.meta.env.VITE_SITE_DESCRIPTION || 'Empresa líder en desarrollo web',
-  siteKeywords: import.meta.env.VITE_SITE_KEYWORDS || 'desarrollo web, perú',
+    process.env.NEXT_PUBLIC_SITE_DESCRIPTION ??
+    'Empresa líder en desarrollo web, e-commerce, landing pages y software empresarial en Perú.',
+  siteKeywords:
+    process.env.NEXT_PUBLIC_SITE_KEYWORDS ??
+    'desarrollo web peru, ecommerce peru, landing pages, software empresarial, softtech peru',
 
   // Utilidades
-  isDevelopment: import.meta.env.VITE_ENV === 'development',
-  isProduction: import.meta.env.VITE_ENV === 'production',
+  isDevelopment: process.env.NODE_ENV === 'development',
+  isProduction: process.env.NODE_ENV === 'production',
 } as const;

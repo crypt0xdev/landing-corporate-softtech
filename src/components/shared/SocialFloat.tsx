@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Facebook, Linkedin, Instagram, Twitter } from 'lucide-react';
@@ -76,7 +78,7 @@ const SocialFloat: React.FC = () => {
             }}
           >
             <motion.div
-              whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+              whileHover={{ rotate: [0, -10, 10, -10, 0], transition: { type: 'tween', duration: 0.5 } }}
               transition={{ duration: 0.5 }}
             >
               <Icon

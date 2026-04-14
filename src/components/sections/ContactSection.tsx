@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle } from 'lucide-react';
@@ -9,13 +11,8 @@ import TextArea from '@/components/ui/TextArea';
 import Button from '@/components/ui/Button';
 import { useForm } from '@/hooks/useForm';
 import { trackFormSubmission } from '@/utils/analytics';
+import { contactFormSchema } from '@/utils/contactValidation';
 import type { ContactFormData } from '@/types';
-import {
-  validateEmail,
-  validatePhone,
-  validateRequired,
-  validateMinLength,
-} from '@/utils/validation';
 
 const ContactSection: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -30,31 +27,16 @@ const ContactSection: React.FC = () => {
         message: '',
       },
       validate: (values) => {
-        const errors: Partial<Record<keyof ContactFormData, string>> = {};
-
-        if (!validateRequired(values.name)) {
-          errors.name = 'El nombre es requerido';
+        const result = contactFormSchema.safeParse(values);
+        if (result.success) return {};
+        const fieldErrors: Partial<Record<keyof ContactFormData, string>> = {};
+        for (const issue of result.error.issues) {
+          const field = issue.path[0] as keyof ContactFormData;
+          if (field && !fieldErrors[field]) {
+            fieldErrors[field] = issue.message;
+          }
         }
-
-        if (!validateRequired(values.email)) {
-          errors.email = 'El correo es requerido';
-        } else if (!validateEmail(values.email)) {
-          errors.email = 'Correo electrónico inválido';
-        }
-
-        if (!validateRequired(values.phone)) {
-          errors.phone = 'El teléfono es requerido';
-        } else if (!validatePhone(values.phone)) {
-          errors.phone = 'Número de teléfono inválido';
-        }
-
-        if (!validateRequired(values.message)) {
-          errors.message = 'El mensaje es requerido';
-        } else if (!validateMinLength(values.message, 10)) {
-          errors.message = 'El mensaje debe tener al menos 10 caracteres';
-        }
-
-        return errors;
+        return fieldErrors;
       },
       onSubmit: async () => {
         const toastId = toast.loading('Enviando mensaje...');

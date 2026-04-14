@@ -11,6 +11,12 @@ export const contactFormSchema = z.object({
       'El nombre solo puede contener letras y espacios',
     ),
 
+  company: z
+    .string()
+    .max(100, 'El nombre de empresa no puede exceder 100 caracteres')
+    .optional()
+    .default(''),
+
   email: z
     .string()
     .min(1, 'El email es requerido')

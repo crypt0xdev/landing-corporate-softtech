@@ -1,6 +1,6 @@
 // Google Analytics Configuration
-export const GA_TRACKING_ID =
-  import.meta.env.VITE_GA_TRACKING_ID || 'G-XXXXXXXXXX';
+import { env } from '@/config/env';
+export const GA_TRACKING_ID = env.gaTrackingId || 'G-XXXXXXXXXX';
 
 // Event tracking
 export const trackEvent = (

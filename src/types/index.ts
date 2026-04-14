@@ -1,18 +1,8 @@
-export interface Service {
-  id: string;
-  title: string;
-  description: string;
-  icon: string;
-  features: string[];
-}
+import type { z } from 'zod';
+import type { contactFormSchema } from '@/utils/contactValidation';
 
-export interface ContactFormData {
-  name: string;
-  company: string;
-  email: string;
-  phone: string;
-  message: string;
-}
+// Inferido del schema Zod — fuente única de verdad
+export type ContactFormData = z.infer<typeof contactFormSchema>;
 
 export interface NavLink {
   label: string;

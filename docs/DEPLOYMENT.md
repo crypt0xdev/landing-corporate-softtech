@@ -44,29 +44,29 @@
    - Ve a [vercel.com](https://vercel.com)
    - Click en "Add New Project"
    - Importa tu repositorio de GitHub
-   - Vercel detecta automáticamente que es Vite
+   - Vercel detecta automáticamente que es Next.js
 
 2. **Configurar Build**
 
    ```
-   Framework Preset: Vite
+   Framework Preset: Next.js
    Build Command: npm run build
-   Output Directory: dist
+   Output Directory: .next
    Install Command: npm install
    ```
 
 3. **Variables de Entorno**
    - Settings → Environment Variables
-   - Añade todas las variables `VITE_*`
+   - Añade todas las variables `NEXT_PUBLIC_*`
    - Aplica a: Production, Preview, Development
 
    ```
-   VITE_COMPANY_NAME=Tu Empresa Real
-   VITE_COMPANY_EMAIL=contacto@tuempresa.com
-   VITE_COMPANY_PHONE=+51 912345678
-   VITE_WHATSAPP_PHONE=51912345678
-   VITE_GA_TRACKING_ID=G-XXXXXXXXXX
-   VITE_SITE_URL=https://tudominio.com
+   NEXT_PUBLIC_COMPANY_NAME=Tu Empresa Real
+   NEXT_PUBLIC_COMPANY_EMAIL=contacto@tuempresa.com
+   NEXT_PUBLIC_COMPANY_PHONE=+51 912345678
+   NEXT_PUBLIC_WHATSAPP_PHONE=51912345678
+   NEXT_PUBLIC_GA_TRACKING_ID=G-XXXXXXXXXX
+   NEXT_PUBLIC_SITE_URL=https://tudominio.com
    ```
 
 4. **Deploy**
@@ -109,14 +109,14 @@ vercel --prod
 
 ## 🦅 Deployment en Netlify
 
-### Método 1: Drag & Drop
+### Método 1: Conectar desde GitHub
 
 ```bash
-# Build local
+# Build local para verificar
 npm run build
 
-# Drag & Drop la carpeta 'dist' a:
-# https://app.netlify.com/drop
+# Luego arrastra la carpeta '.next' a Netlify
+# o usa la integración GitHub en https://app.netlify.com
 ```
 
 ### Método 2: GitHub Integration
@@ -130,7 +130,7 @@ npm run build
 
    ```
    Build command: npm run build
-   Publish directory: dist
+   Publish directory: .next
    ```
 
 3. **Environment Variables**
@@ -145,12 +145,7 @@ npm run build
 ```toml
 [build]
   command = "npm run build"
-  publish = "dist"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  publish = ".next"
 
 [[headers]]
   for = "/*"
@@ -167,7 +162,7 @@ npm run build
 npm run build
 
 # Deploy con Wrangler
-npx wrangler pages publish dist
+npx wrangler pages publish .next
 ```
 
 ### Configuración
@@ -179,7 +174,7 @@ compatibility_date = "2024-01-01"
 
 [build]
 command = "npm run build"
-directory = "dist"
+directory = ".next"
 ```
 
 ## 🐳 Docker Deployment
@@ -197,33 +192,15 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-FROM nginx:alpine
-COPY --from=build /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/nginx.conf
+FROM node:18-alpine
+WORKDIR /app
+COPY --from=build /app/.next ./.next
+COPY --from=build /app/public ./public
+COPY --from=build /app/package*.json ./
+RUN npm ci --omit=dev
 
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
-```
-
-### nginx.conf
-
-```nginx
-server {
-  listen 80;
-  server_name _;
-
-  root /usr/share/nginx/html;
-  index index.html;
-
-  location / {
-    try_files $uri $uri/ /index.html;
-  }
-
-  location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2)$ {
-    expires 1y;
-    add_header Cache-Control "public, immutable";
-  }
-}
+EXPOSE 3000
+CMD ["npm", "run", "start"]
 ```
 
 ### Build & Run
@@ -233,7 +210,7 @@ server {
 docker build -t landing-page .
 
 # Run
-docker run -p 8080:80 landing-page
+docker run -p 3000:3000 landing-page
 ```
 
 ## 📊 Post-Deployment
@@ -333,9 +310,9 @@ npm run build
 ### Variables de entorno no funcionan
 
 ```bash
-# Verificar prefijo VITE_
-✅ VITE_COMPANY_NAME
-❌ COMPANY_NAME
+# Verificar prefijo NEXT_PUBLIC_
+✅ NEXT_PUBLIC_COMPANY_NAME
+❌ COMPANY_NAME  # no será visible en el cliente
 
 # Verificar que estén en Vercel Dashboard
 Settings → Environment Variables
@@ -346,20 +323,14 @@ Deployments → ⋯ → Redeploy
 
 ### Rutas 404 en producción
 
-Verifica rewrites en `vercel.json`:
-
-```json
-{
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
-}
-```
+Next.js maneja las rutas automáticamente mediante el App Router. Verifica que `src/app/` tenga los archivos de ruta correctos.
 
 ### Performance bajo
 
 ```bash
 # Analizar bundle
 npm run build
-# Revisar dist/ sizes
+# Revisar .next/analyze o añadir @next/bundle-analyzer
 
 # Lazy load componentes pesados
 const HeavyComponent = lazy(() => import('./HeavyComponent'));
