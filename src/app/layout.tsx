@@ -11,49 +11,98 @@ const inter = Inter({
   display: 'swap',
 });
 
+const BASE_URL = 'https://landing-corporate-softtech.vercel.app';
+const TITLE = 'SoftTech | Desarrollo Web, Software y Seguridad Informática en Perú';
+const DESCRIPTION =
+  'Creamos sitios web profesionales, tiendas online, software empresarial y soluciones de seguridad informática para empresas en Perú. Cotiza tu proyecto hoy.';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://landing-corporate-softtech.vercel.app'),
+  metadataBase: new URL(BASE_URL),
+
+  // ── Título ──────────────────────────────────────────────────────────────
   title: {
-    default: 'SoftTech - Desarrollo Web Profesional | Soluciones Digitales en Perú',
+    default: TITLE,
     template: '%s | SoftTech',
   },
-  description:
-    'Empresa líder en desarrollo web, e-commerce, landing pages y soluciones tecnológicas. Desarrollo de software a medida, tiendas online y seguridad informática. Servicio profesional en todo Perú.',
+
+  // ── Descripción y keywords ───────────────────────────────────────────────
+  description: DESCRIPTION,
   keywords: [
     'desarrollo web peru',
+    'tienda online peru',
     'ecommerce peru',
-    'landing pages',
-    'software empresarial',
-    'tienda online',
+    'software empresarial peru',
+    'landing pages peru',
     'desarrollo web lima',
-    'seguridad informatica',
-    'marketing digital',
+    'seguridad informatica peru',
+    'diseño web profesional',
+    'aplicaciones web lima',
+    'softtech',
   ],
-  authors: [{ name: 'SoftTech' }],
-  robots: { index: true, follow: true },
+
+  // ── Autoría e indexación ─────────────────────────────────────────────────
+  authors: [{ name: 'SoftTech', url: BASE_URL }],
+  creator: 'SoftTech',
+  publisher: 'SoftTech',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
+  },
+
+  // ── Open Graph (Facebook / WhatsApp / LinkedIn) ──────────────────────────
   openGraph: {
     type: 'website',
     locale: 'es_PE',
-    url: 'https://landing-corporate-softtech.vercel.app',
+    url: BASE_URL,
     siteName: 'SoftTech',
-    title: 'SoftTech - Desarrollo Web Profesional | Soluciones Digitales',
-    description:
-      'Desarrollo web, e-commerce, software empresarial y soluciones digitales profesionales en todo Perú. ¡Transforma tu negocio!',
+    title: TITLE,
+    description: DESCRIPTION,
     images: [
       {
-        url: '/og-image.png',
+        // Imagen horizontal 1200×630 — Facebook, LinkedIn, Slack
+        url: `${BASE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: 'SoftTech',
+        alt: 'SoftTech — Desarrollo Web Profesional en Perú',
+        type: 'image/png',
+      },
+      {
+        // Imagen cuadrada 600×600 — WhatsApp, Instagram, Telegram
+        url: `${BASE_URL}/og-image-square.png`,
+        width: 600,
+        height: 600,
+        alt: 'SoftTech — Desarrollo Web Profesional en Perú',
+        type: 'image/png',
       },
     ],
   },
+
+  // ── Twitter / X Card ─────────────────────────────────────────────────────
   twitter: {
     card: 'summary_large_image',
-    title: 'SoftTech - Desarrollo Web Profesional',
-    description: 'Desarrollo web, e-commerce y soluciones digitales profesionales en Perú',
-    images: ['/og-image.png'],
+    site: '@softtechperu',
+    creator: '@softtechperu',
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [
+      {
+        url: `${BASE_URL}/og-image.png`,
+        alt: 'SoftTech — Desarrollo Web Profesional en Perú',
+      },
+    ],
   },
+
+  // ── URLs canónicas / alternativas de idioma ──────────────────────────────
+  alternates: {
+    canonical: BASE_URL,
+    languages: {
+      'es-PE': BASE_URL,
+      'en-US': `${BASE_URL}?lang=en`,
+    },
+  },
+
+  // ── Íconos y manifest ────────────────────────────────────────────────────
   manifest: '/site.webmanifest',
   icons: {
     icon: [
@@ -62,10 +111,17 @@ export const metadata: Metadata = {
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
     ],
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
+    shortcut: '/favicon-32x32.png',
   },
+
+  // ── Geo / localización + locale alternativa ──────────────────────────────
   other: {
-    'geo.region': 'PE',
+    'geo.region': 'PE-LMA',
     'geo.placename': 'Lima, Perú',
+    'geo.position': '-12.046374;-77.042793',
+    'ICBM': '-12.046374, -77.042793',
+    // locale alternativa para scrapeadores OG que la leen directamente
+    'og:locale:alternate': 'en_US',
   },
 };
 
@@ -74,8 +130,46 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'SoftTech',
+    url: BASE_URL,
+    logo: `${BASE_URL}/og-image.png`,
+    description: DESCRIPTION,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Av. Migel Garsu N°793',
+      addressLocality: 'Lima',
+      addressCountry: 'PE',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+51-923-233-333',
+      contactType: 'customer service',
+      availableLanguage: ['Spanish', 'English'],
+    },
+    sameAs: [
+      'https://facebook.com/softtechperu',
+      'https://linkedin.com/company/softtechperu',
+      'https://twitter.com/softtechperu',
+      'https://instagram.com/softtechperu',
+    ],
+    offers: {
+      '@type': 'Offer',
+      description: 'Desarrollo web, software empresarial y seguridad informática',
+      areaServed: { '@type': 'Country', name: 'Perú' },
+    },
+  };
+
   return (
     <html lang="es-PE" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <ThemeProvider>
           <LanguageProvider>

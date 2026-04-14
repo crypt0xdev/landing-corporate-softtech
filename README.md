@@ -1,8 +1,8 @@
 <div align="center">
 
-# 🚀 Landing Page Corporativa - Template Profesional
+# 🚀 Landing Page Corporativa - SoftTech
 
-### **Template** de plataforma web moderna para impulsar negocios en la era digital
+### Plataforma web moderna para impulsar negocios en la era digital
 
 > ⚠️ **NOTA**: Este es un proyecto público con datos de **EJEMPLO**. Reemplaza toda la información con tus datos reales.
 
@@ -12,6 +12,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC.svg?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Crypt0xDev/softtech-landing)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-landing--corporate--softtech.vercel.app-brightgreen?style=for-the-badge)](https://landing-corporate-softtech.vercel.app/)
 
 </div>
 
@@ -93,22 +94,31 @@ npm run dev
 ```
 📁 src/
 ├── 🗂️ app/                # Next.js App Router
-│   ├── layout.tsx         # Root layout (providers, metadata)
-│   └── page.tsx           # Página raíz → <HomePage />
+│   ├── layout.tsx         # Root layout (providers, metadata SEO)
+│   └── page.tsx           # Entry point → <HomePage />
 ├── 🧩 components/
 │   ├── 🏛️ layout/          # Navbar, Footer
-│   ├── 📜 sections/        # Hero, Services, Contact, etc.
-│   ├── 🤝 shared/          # SEO, WhatsAppButton, ScrollToTop
-│   └── 🎨 ui/              # Button, Card, Input, Container
-├── ⚙️ config/              # Configuraciones centralizadas
-├── 📊 constants/           # Constantes de aplicación
-├── 🌐 contexts/            # ThemeContext, LanguageContext
-├── 🪝 hooks/               # useForm, useScrollAnimation
-├── 🌍 i18n/                # Traducciones (es/en)
-├── 📄 pages/               # HomePage (view principal)
-├── 🎨 styles/              # Estilos globales CSS
-├── 📝 types/               # Definiciones TypeScript
-└── 🛠️ utils/               # analytics, scroll, contactValidation
+│   ├── 📜 sections/        # HeroSection, StatsSection, ServicesSection,
+│   │                      # AboutSection, TestimonialsSection, CTASection,
+│   │                      # CoverageSection, FAQSection, ContactSection
+│   ├── 🤝 shared/          # SocialFloat, WhatsAppButton, ScrollToTop,
+│   │                      # ThemeToggle, LanguageSelector, LoadingSpinner
+│   └── 🎨 ui/              # Button, Card, Input, TextArea, Container, SectionTitle
+├── ⚙️ config/              # env.ts — variables de entorno centralizadas
+├── 📊 constants/           # NAV_LINKS, SERVICES, COMPANY_INFO, SOCIAL_LINKS
+├── 🌐 contexts/            # ThemeContext (dark/light), LanguageContext (es/en)
+├── 🪝 hooks/               # useTheme, useLanguage, useForm, useScrollAnimation
+├── 🌍 i18n/                # translations.ts — textos ES y EN
+├── 👁️ views/               # HomePage (composición de secciones)
+├── 🎨 styles/              # index.css — estilos globales y utilidades
+├── 📝 types/               # Definiciones TypeScript globales
+└── 🛠️ utils/               # analytics, scroll, validation, contactValidation
+```
+
+### Orden de secciones (flujo de conversión)
+
+```
+Hero → Stats → Services → About → Testimonials → CTA → Coverage → FAQ → Contact
 ```
 
 ## ⚙️ Variables de Entorno
@@ -199,15 +209,19 @@ module.exports = {
 
 <br>
 
-| 🎯 Componente    | 📝 Descripción                                   |
-| :--------------- | :----------------------------------------------- |
-| **Navbar**       | Navegación sticky con detección de scroll         |
-| **Hero**         | Sección hero con animaciones y CTAs               |
-| **Services**     | Grid de servicios con efectos hover               |
-| **Testimonials** | Reseñas de clientes con ratings                   |
-| **FAQ**          | Acordeón interactivo colapsable                   |
-| **Contact**      | Formulario validado con Zod y notificaciones      |
-| **Footer**       | Pie de página con enlaces y redes sociales        |
+| 🎯 Componente    | 📝 Descripción                                              |
+| :--------------- | :---------------------------------------------------------- |
+| **Navbar**       | Sticky con hide-on-scroll, sección activa y menú móvil      |
+| **Hero**         | Animaciones Framer Motion, CTAs y stats en línea            |
+| **Stats**        | Contadores animados con `id="stats"` para navegación        |
+| **Services**     | Grid de 6 servicios con efectos hover y Framer Motion       |
+| **About**        | Historia, valores y equipo con iconos animados              |
+| **Testimonials** | Cards con rating ★, i18n completo y stats de satisfacción   |
+| **CTA**          | Llamada a la acción de alta conversión post-testimonios     |
+| **Coverage**     | Mapa de cobertura y zonas de atención                       |
+| **FAQ**          | Acordeón animado, i18n y borde lateral activo               |
+| **Contact**      | Formulario validado con Zod y notificaciones toast          |
+| **Footer**       | Enlaces, redes sociales con animaciones tween               |
 
 </details>
 
@@ -218,6 +232,8 @@ module.exports = {
 <div align="center">
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Crypt0xDev/softtech-landing)
+
+🌐 **Demo en vivo:** [landing-corporate-softtech.vercel.app](https://landing-corporate-softtech.vercel.app/)
 
 </div>
 
@@ -298,13 +314,13 @@ npm run build
 
 📧 **Email:** [contacto@tuempresa.com](mailto:contacto@tuempresa.com)
 📞 **Teléfono:** [+51 999 999 999](tel:+51999999999)
-🌐 **Website:** [tuempresa.com](https://tuempresa.com)
+🌐 **Website:** [landing-corporate-softtech.vercel.app](https://landing-corporate-softtech.vercel.app/)
 
 > ⚠️ Datos de ejemplo - Reemplaza con tu información real
 
 ---
 
-### 💙 Template profesional y moderno
+### 💙 Landing page corporativa profesional y moderna
 
 © 2026 - Proyecto de código abierto. Personaliza y usa libremente.
 
