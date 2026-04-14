@@ -6,7 +6,7 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://softtech-landing.vercel.app/</loc>
+    <loc>https://landing-corporate-softtech.vercel.app/</loc>
     <lastmod>2026-03-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -14,35 +14,35 @@
 
   <!-- Secciones principales (anchors en la misma página) -->
   <url>
-    <loc>https://softtech-landing.vercel.app/#services</loc>
+    <loc>https://landing-corporate-softtech.vercel.app/#services</loc>
     <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://softtech-landing.vercel.app/#about</loc>
+    <loc>https://landing-corporate-softtech.vercel.app/#about</loc>
     <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://softtech-landing.vercel.app/#testimonials</loc>
+    <loc>https://landing-corporate-softtech.vercel.app/#testimonials</loc>
     <lastmod>2026-03-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://softtech-landing.vercel.app/#faq</loc>
+    <loc>https://landing-corporate-softtech.vercel.app/#faq</loc>
     <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://softtech-landing.vercel.app/#contact</loc>
+    <loc>https://landing-corporate-softtech.vercel.app/#contact</loc>
     <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>

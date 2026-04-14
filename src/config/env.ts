@@ -33,7 +33,7 @@ export const env = {
   apiKey: process.env.NEXT_PUBLIC_API_KEY ?? '',
 
   // SEO
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://softtech-landing.vercel.app',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://landing-corporate-softtech.vercel.app',
   siteTitle:
     process.env.NEXT_PUBLIC_SITE_TITLE ??
     'SoftTech - Desarrollo Web Profesional | Soluciones Digitales',
@@ -42,7 +42,7 @@ export const env = {
     'Empresa líder en desarrollo web, e-commerce, landing pages y software empresarial en Perú.',
   siteKeywords:
     process.env.NEXT_PUBLIC_SITE_KEYWORDS ??
-    'desarrollo web peru, ecommerce peru, landing pages, software empresarial, softtech peru',
+    'desarrollo web peru, ecommerce peru, landing pages, software empresarial, softtech',
 
   // Utilidades
   isDevelopment: process.env.NODE_ENV === 'development',

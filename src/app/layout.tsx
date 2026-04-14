@@ -12,7 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://softtech-landing.vercel.app'),
+  metadataBase: new URL('https://landing-corporate-softtech.vercel.app'),
   title: {
     default: 'SoftTech - Desarrollo Web Profesional | Soluciones Digitales en Perú',
     template: '%s | SoftTech',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'es_PE',
-    url: 'https://softtech-landing.vercel.app',
+    url: 'https://landing-corporate-softtech.vercel.app',
     siteName: 'SoftTech',
     title: 'SoftTech - Desarrollo Web Profesional | Soluciones Digitales',
     description:
